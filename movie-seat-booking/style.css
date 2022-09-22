@@ -28,18 +28,15 @@ body
   align-items: center;
   justify-content: center;
 }
-.container-1
+div.options
 {
   margin: 20px 0;
-  width: 300px;
-  height: 300px;
-  background-color: #02f;
 }
 .references
 {
-  background-color: #f4233f;
+  background-color: rgba(0, 0, 0, 0.1);
   height: 40px;
-  width: 300px;
+  width: 350px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -51,28 +48,44 @@ body
   width: 15px;
   border-radius: 40px 40px 0px 0px;
   height: 12px;
-  background-color: #0f0;
 }
-ul > li
+ul.right li, ul.left li
 {
   list-style-type: none;
-  width: 15px;
+  width: 35%;
   height: 12px;
   background-color: #fafa03;
- 
+  margin: 3px;
 }
+ul.middle li
+{
+  width: 16%;
+  margin: 4.9px 2.3px;
+}
+
 div.seating-cinema
 {
   background-color: aqua;
-  width: 400px;
-  height: 200px;
+  width: 200px;
+  height: 150px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
-div.seating-cinema > ul
+ul.right, ul.left
 {
-  width: 110px;
+  width: 40px;
   background-color:#f4233f;
   color: #fff;
+  display: flex;
+  flex-wrap: wrap;
 
+}
+ul.middle
+{
+  width: 80px;
+  background-color: #f0aa;
+}
+div.color-na
+{
+  background-color: #444451;
 }
