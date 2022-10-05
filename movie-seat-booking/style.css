@@ -134,5 +134,9 @@ div.cinema-screen
   color: #000;
   transform: rotateX(-45deg);
 }
+#seats-reserved, #price-movie
+{
+  color: #6feaf6;
+}
 
 
