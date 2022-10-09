@@ -1,38 +1,53 @@
 const moviesArray = (Array.from(document.querySelectorAll('option')).map( element => element.textContent));
-let selectTag = document.body.childNodes[1].childNodes[3];
-
+let selectTag = document.body.childNodes[1].childNodes[3], 
+    count = 0;
 const getCurrentPriceMovie = () =>
 {
     let selectValue = selectTag.value;
     return Number(moviesArray[selectValue].slice(moviesArray[selectValue].indexOf('$') + 1,moviesArray[selectValue].indexOf(')')));
 }
-let count = 0;
+
+selectTag.addEventListener('click', updatePriceAndNumOfSeats);
+
 const colorSelected = window.getComputedStyle(document.getElementById('color-selected')).backgroundColor,
-    colorNa = window.getComputedStyle(document.getElementById('color-na')).backgroundColor,
-    seats = Array.from(document.querySelectorAll('.seating-cinema ul > li')),
-    seatClicked = e =>
-    {
-        if( e.target.style.backgroundColor == colorSelected)
-        {
-            e.target.style.backgroundColor = colorNa;
-            count--;
-            document.getElementById('seats-reserved').textContent = count;
-            document.getElementById('price-movie').textContent = getCurrentPriceMovie() * count;
-            return;
-        }
-        e.target.style.backgroundColor = colorSelected;
-        count++;
-        document.getElementById('seats-reserved').textContent = count;
-        document.getElementById('price-movie').textContent = '$' + getCurrentPriceMovie() * count;
-        return;
-        
-    };
-
-
-for (let seat of seats)
+colorNa = window.getComputedStyle(document.getElementById('color-na')).backgroundColor,
+colorOccupied = window.getComputedStyle(document.getElementById('color-occupied')).backgroundColor,
+seats = Array.from(document.querySelectorAll('.seating-cinema ul > li')),
+seatClicked = e =>
 {
-    seat.addEventListener('click', seatClicked);
+    if(e.target && e.target.tagName === 'LI')
+    {
+        if(e.target.classList.contains('color-na')) return;
+        e.target.classList.toggle('selected');
+        e.target.classList.contains('selected') ? count++ : count--;
+        updatePriceAndNumOfSeats()
+        return;
+    }
 }
+function updatePriceAndNumOfSeats()
+{
+    document.getElementById('seats-reserved').textContent = count;
+    document.getElementById('price-movie').textContent = '$' + getCurrentPriceMovie() * count;
+}
+function getNumRandom(min, max) 
+{
+    let result;
+    result = Math.floor(Math.random() * (max - min + 1)) + min;
+    return result;
+}
+for (let i = 0; i <= 4; i++)
+{
+    let occupied = seats[getNumRandom(0, seats.length)];
+    occupied.style.backgroundColor = colorOccupied;
+    occupied.classList.add('color-na');
+}
+
+let containerSeats = Array.from(document.querySelectorAll('.seating-cinema ul'));
+
+
+containerSeats.forEach(container => {
+    container.addEventListener('click', seatClicked);
+});
 
 
 

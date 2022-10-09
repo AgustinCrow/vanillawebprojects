@@ -15,7 +15,10 @@ color: #6feaf6;
   font-size: 20px;
   border: 0;
 }
-
+html
+{
+  height: 100%;
+}
 /* 
 The seats should have the same measure, for the next
 */
@@ -24,31 +27,36 @@ body
   font-family: 'Lato', sans-serif;
   background-color: #242333;
   color: #fff;
-  min-height: 80vh;
   display: flex;
-  gap: 10px;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   perspective: 400px;
+  height: 80%;
+  text-align: center;
 }
 /* CONTAINER SEATS */
-select
+select, select > *
 {
   padding: 2px;
   border-radius: 2px;
-  outline: none;
   margin-left: 10px;
+  text-align: center;
+  width: min-content;
+}
+.options
+{
+  width: max-content;
 }
 .references
 {
   background-color: rgba(0, 0, 0, 0.1);
   height: 40px;
-  width: 350px;
+  width: 15em;
   padding: 0 10px;
   display: flex;
   border-radius: 5px;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -57,7 +65,7 @@ div.seating-cinema
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   padding: 5px;
-  width: 300px;
+  width: 12em;
   height: 160px;
   display: flex;
   justify-content: space-around;
@@ -129,7 +137,7 @@ div.cinema-screen
   box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
   border-radius: 0px 0px 3px 3px;
   background-color: #fff;
-  width: 300px;
+  width: 12em;
   height: 70px;
   color: #000;
   transform: rotateX(-45deg);
@@ -139,4 +147,15 @@ div.cinema-screen
   color: #6feaf6;
 }
 
-
+.occupied
+{
+  background-color: #fff;
+}
+.selected
+{
+  background-color: #6feaf6;
+}
+.color-na
+{
+  background-color: #444451;
+}
