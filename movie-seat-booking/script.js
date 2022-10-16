@@ -9,17 +9,14 @@ const getCurrentPriceMovie = () =>
 
 selectTag.addEventListener('click', updatePriceAndNumOfSeats);
 
-const colorSelected = window.getComputedStyle(document.getElementById('color-selected')).backgroundColor,
-colorNa = window.getComputedStyle(document.getElementById('color-na')).backgroundColor,
-colorOccupied = window.getComputedStyle(document.getElementById('color-occupied')).backgroundColor,
-seats = Array.from(document.querySelectorAll('.seating-cinema ul > li')),
+const seats = Array.from(document.querySelectorAll('.seating-cinema ul > li')),
 seatClicked = e =>
 {
-    if(e.target && e.target.tagName === 'LI')
+    if (e.target && e.target.tagName === 'LI')
     {
-        if(e.target.classList.contains('color-na')) return;
-        e.target.classList.toggle('selected');
-        e.target.classList.contains('selected') ? count++ : count--;
+        if(e.target.classList.contains('color-occupied')) return;
+        e.target.classList.toggle('color-selected');
+        e.target.classList.contains('color-selected') ? count++ : count--;
         updatePriceAndNumOfSeats()
         return;
     }
@@ -38,16 +35,14 @@ function getNumRandom(min, max)
 for (let i = 0; i <= 4; i++)
 {
     let occupied = seats[getNumRandom(0, seats.length)];
-    occupied.style.backgroundColor = colorOccupied;
-    occupied.classList.add('color-na');
+    occupied.classList.add("color-occupied");
 }
 
-let containerSeats = Array.from(document.querySelectorAll('.seating-cinema ul'));
 
-
-containerSeats.forEach(container => {
-    container.addEventListener('click', seatClicked);
-});
+Array.from(document.querySelectorAll('.seating-cinema ul')).forEach(container =>
+    {
+        container.addEventListener('click', seatClicked);
+    });
 
 
 
